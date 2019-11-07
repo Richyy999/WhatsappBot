@@ -16,28 +16,28 @@ wait = WebDriverWait(driver, 600)
 # Nombre del contacto o grupo
 target = input("Introduce el nombre del contacto o grupo: ")
 
-# mensaje a enviar
-string = input("Introduce el mensaje: ")
-
-# número de veces que se envía le mensaje
-numVeces = int(input("Introduce el número de veces que se repetirá el mensaje: "))
-
 # para seleccionar el contacto o grupo
 x_arg = '//span[@title = "{}"]'.format(target)
 
 group_title = driver.find_element_by_xpath(x_arg) 
 group_title.click()
 
+# mensaje a enviar
+string = input("Introduce el mensaje: ")
+
 # seleccionar el campo de texto
 inp_xpath = '//*[@id="main"]/footer/div[1]/div[2]/div/div[2]'
 input_box = driver.find_element_by_xpath(inp_xpath)
+
+# número de veces que se envía le mensaje
+numVeces = int(input("Introduce el número de veces que se repetirá el mensaje: "))
 
 for i in range(numVeces):
     # introduce el mensaje en el campo de texto
     input_box.send_keys(string)
     # pulsa enter y envía el mensaje
     input_box.send_keys(Keys.ENTER)
-    # esperar a que llegue el mensaje
+    # esperar antes de enviar el siguiente mensaje
     sleep(1)
     
 driver.close()
